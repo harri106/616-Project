@@ -1,0 +1,174 @@
+---
+title: "Beach Tan Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Examining How Different Client Variables Affect Retail Revenue
+
+**Sydney Harris**
+
+Masters of Science in Business Analytics, Miami University, OH 45056
+
+harri106@miamioh.edu 
+
+September 22, 2020
+
+### Packages Used 
+
+* Used the DataExplorer package to run a profile missing report to see the amount of missingness in the BeachTan data set. 
+
+```{r}
+library(DataExplorer)
+library(dplyr)
+```
+
+
+
+### Overview of the Purpose of Analysis
+
+  Beach Tan is a popular indoor tanning salon that has several locations across the US. While Beach Tan is a very popular indoor tanning destination, Beach Tan struggles with getting their clients to purchase retail. A lot of clients purchase their retail online rather than in store. Due to this, Beach Tan's marketing team was tasked with creating more targted promotions for retail to increase retail revenue at Beach Tan locations. Currrently, the marketing team's promotions are broad and the same for every client. The marketing team wants to know what type of clients are purchasing retail and what type of clients are not so they can better target certain clients with retail ads.
+  
+  In this analysis, I attempt to gain a deeper insight into the tanning habits of Beach Tan customers by examining how a client's age, gender, membership type, membership level, amount of sunless tans, and amount of UV tans affect Beach Tan's retail revenue. To do so, I created a multiple linear regression model on the Beach Tan data that was pulled from BeachTan dataset collected in 2014. It is important to note that this data was preprocessed by Dr.Jones-Farmer.
+
+////need to include the excel file with data dictionary//// 
+
+### Description of Beach Tan Data
+
+The Beach Tan data set has 11,041 observations which were compiled from ten different Beach Tan store locations in 2014.
+
+The variables are as follows:
+
+* **UIDClient**: Client Identification Number
+- **UIDStoreLocation**: Store Identification Number 
++ **Gender**: 0 = Female, 1 = Male
+* **DateJoined**: Date the client became a member of Beach Tan. If the client is a non-member, this is the date and time of their first tanning session. 
+* **DaysSinceJoined**: The number of days elapsed between DateJoined and 11/1/2014. 
+* **MembershipType**: 0 = Non Membership, 1 = Monthly Membership, 2 = Annual Membership
+* **MembershipLevel**: Types of levels are based on the level of tanning equiptment. The higher the membership level, the higher the tanning equiptment level availiable to the client. Higher tanning equiptment results in faster tanning results. 0 = Non Membership, 2 = Faster, 3 = Fastest, 4 = Instant
+* **Age**: Age of client in years
+* **UVTans**: The number of Ultra Violet Tans a client has taken since they joined Beach Tan. UV tans include tans in UV beds or tans in stand-up booths.
+* **SunlessTans**: The number of sunless tans a client has taken since they joined Beach Tan. Sunless tans are spray tans.
+* **UpgradeRevenue**: Amount spent in dollars by members to tan in a higher level bed than what their regular membership includes.
+* **RetailRevenue**: Amount spent in dollars on various skin care lotions and products that Beach Tan offers.
+
+Here is a glimpse of the data to get a better look. Several variable's data types are incorrect. I will discuss which ones I need to change in the preprocessing section of this analysis.
+```{r}
+BeachTan<-read.csv("BeachTan.csv", stringsAsFactors = TRUE)
+head(BeachTan)
+tail(BeachTan)
+```
+
+
+There is no missing data in this data set. However, the variable gender does include some NULL values. I assume that clients either forgot to fill in this question, refused to disclose what gender they identify as, or do not identify as a female or male.
+
+```{r}
+DataExplorer::profile_missing(BeachTan)
+```
+
+
+
+### Details On Data Preprocessing 
+
+**Converting Variables to the Correct Data Types**
+
+
+Several variables have incorrect datatypes which need to be fixed. I looked at the data types to better examine which variables have incorrect datatypes.
+```{r}
+str(BeachTan)
+```
+
+
+
+Currently, MembershipType is an integer but it needs to be changed to a factor because it has categorical levels.
+```{r}
+BeachTan$MembershipType<-as.factor(BeachTan$MembershipType)
+```
+
+MembershipLevel is currently an integer but needs to be changed to a factor because it has categorical levels.
+
+```{r}
+BeachTan$MembershipLevel<-as.factor(BeachTan$MembershipLevel)
+```
+
+DateJoined is currently a factor but should be a ___ 
+```{r}
+BeachTan$DateJoined<- as.character(BeachTan$DateJoined)
+BeachTan$DateJoined <- as.Date(BeachTan$DateJoined, "%m/%d/%Y")
+```
+
+
+```{r}
+BeachTan<-cbind(BeachTan, GenderDum[,-1])
+BeachTan<-cbind(BeachTan, GenderDum[,-2])
+BeachTan<-select(BeachTan, -Gender)
+```
+
+
+```{r}
+levels(BeachTan$Gender)
+install.packages("tidyverse")
+```
+
+
+```{r}
+install.packages("backports")
+```
+
+
+```{r}
+levels(BeachTan$test)
+summary(BeachTan$test)
+```
+
+
+```{r}
+BeachTan$test<-fct_recode(BeachTan$Gender, "Missing"="#NULL!", "Missing"="")
+```
+
+**Creating the correct amount of levels for variables that are factors**
+
+Gender currently has 4 levels. It should only have two, with 0=Female and 1=Male. I dropped the level " " and #NULL!
+```{r}
+BeachTan$Gender <- droplevels(BeachTan$Gender, exclude = if(anyNA(levels(BeachTan$Gender)))NULL else NA)
+```
+
+
+**Checking for Outliers**
+
+I graphed the quantitative variables to look for any unusual observations. 
+```{r}
+plot_histogram(BeachTan)
+```
+
+I graphed the qualitative variables to look for any unusual obervations. 
+```{r}
+plot_bar(BeachTan)
+```
+
+
+
+### Final Analysis 
+
+
+## Buidling a Multiple Linear Regression Model
+
+reg1 <- lm(RetailRevenue ~ Age + Gender + MembershipType + MembershipLevel + UVTans + SunlessTans, data = BeachTan)
+
+## Visualizations 
+
+## Results from Multiple Linear Regression Model
+
+### Conclusion 
+
+This regression model has allowed the marketing team to gain a better understanding of different client's tanning habits and what type of clients are purchasing retail. This information will aid the marketing team in creating more customized promotions. These targeted promotions should lead to an increase in retail revenue. 
+
+Additionally, this model can be used again in the future when new data is acquired. Based on what type of clients the marketing team promotes to, this model can be used to see if certain types of client's have had an increase in retail revenue which will be a nice way to see if their ads are working the way the want them to. 
+
+setwd("/Users/sydneyharris/Desktop/ISA 616/616 Project.Repo")
+
+
+
