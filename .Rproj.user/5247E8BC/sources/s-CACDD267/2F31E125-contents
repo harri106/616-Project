@@ -1,0 +1,7 @@
+test <- read.csv("BeachTan.csv", stringsAsFactors = TRUE)
+table(test$Gender)
+test$Gender <- na.omit(test$Gender)
+table(test$Gender)
+test <- na.omit(test)
+levels(test$Gender)
+droplevels(Gender$"missng")

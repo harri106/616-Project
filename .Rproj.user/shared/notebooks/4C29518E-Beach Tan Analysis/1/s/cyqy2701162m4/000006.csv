@@ -1,5 +1,0 @@
-"0","BeachTan<-cbind(BeachTan, GenderDum[,-1])"
-"0","BeachTan<-cbind(BeachTan, GenderDum[,-2])"
-"0","BeachTan<-select(BeachTan, -Gender)"
-"2","Error: Names must be unique.
-"

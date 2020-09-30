@@ -1,1 +1,0 @@
-"0","BeachTan$Gender <- droplevels(BeachTan$Gender, exclude = if(anyNA(levels(BeachTan$Gender)))NULL else NA)"

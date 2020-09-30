@@ -1,0 +1,7 @@
+BeachTan$gender<-fct_recode(BeachTan$Gender, "Missing"="#NULL!", "Missing"="")
+
+BeachTan$gender<-recode_factor(BeachTan$gender, "0"="Female", "1"="Male", "Missing"="Missing")
+levels(BeachTan$gender)
+options(scipen=999)
+regtest <- lm(RetailRevenue ~ Age + gender + MembershipType + MembershipLevel + UVTans + SunlessTans, data = BeachTan)
+summary(reg1)
