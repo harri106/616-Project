@@ -1,0 +1,3 @@
+"0","barplot(aggregate(BeachTan$RetailRevenue, by = list(BeachTan$MembershipType), "
+"0","                  mean, rm.na = T)[,2], xlab = ""Membership Type"", ylab = ""Average Retail Revenue"","
+"0","        names.arg = c(""Non Member"", ""Monthly Membership"", ""Annual Membership""))"

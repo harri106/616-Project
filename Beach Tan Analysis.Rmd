@@ -177,13 +177,36 @@ Gender, MembershipType, MembershipLevel, UVTans, and SunlessTans all are signifi
 
 It is important to note that the purpose of this model was to examine which predictor variables are significant predictors in predicting retail revenue. The RMSE is high and the multiple R-squared is low because at least one of the levels in MembershipType and MembershipLevel were found to not be significant. However, I kept these two variables in the model because at least one of their levels were found to be significant predictors.
 
+
+**Gender Interpertation**
+
+Males are far less likely to purchase retail than females are in the presence of the other predictors. I made a bar plot to better illustrate average retail revenue spending by gender.
+```{r}
+barplot(aggregate(BeachTan$RetailRevenue, by = list(BeachTan$Gender), 
+                  mean, rm.na = T)[,2], xlab = "Gender", ylab = "Average Retail Revenue",
+                  names.arg = c("Female", "Male"))
+```
+
+
 **MembershipType Interpertation**
 
-Clients whose membership type is annual (MembershipType2) are most likely to purchase retail in the presence of the other predictor variables. Clients who are not members (MembershipType0) are least likely to purchase retail in the presence of the other predictors.
+Clients whose membership type is annual (MembershipType2) are most likely to purchase retail in the presence of the other predictor variables. Clients who are not members (MembershipType0) are least likely to purchase retail in the presence of the other predictors. I made a bar plot to better illustrate average retail revenue spending by membership type. 
+```{r}
+barplot(aggregate(BeachTan$RetailRevenue, by = list(BeachTan$MembershipType), 
+                  mean, rm.na = T)[,2], xlab = "Membership Type", ylab = "Average Retail Revenue",
+        names.arg = c("Non Member", "Monthly Membership", "Annual Membership"))
+```
+
 
 **MembershipLevel Interpertation**
 
-Clients whose membership level are 3 and 4 are the most likely to purchase retail. Clients in Membership level 1 are the least likely to purchase retail.
+Clients whose membership level are 3 and 4 are the most likely to purchase retail. Clients in Membership level 1 are the least likely to purchase retail in the presence of the other preditors. I wanted to see how membership level affects retail revenue without any other variables present so I made a bar plot to evalute average retail revenue spending based on membership levels.  This bar plot illustrates that as a client's membership level increases, so does retail revenue. 
+```{r}
+barplot(aggregate(BeachTan$RetailRevenue, by = list(BeachTan$MembershipLevel), 
+                  mean, rm.na = T)[,2], xlab = "Membership Level", ylab = "Average Retail Revenue",
+        names.arg = c("0", "1", "2", "3", "4"))
+```
+
 
 **UVTans Interperation**
 
@@ -196,13 +219,12 @@ As the amount of times a client SunlessTans increases by 1, retail revenue incre
 
 # Conclusion 
 
-This regression model displays which types of clients are least likely to purchcase retail, so the marketing team can target these clients in hopes of getting them to purchase more retail. I would recommened that the marketing target clients who are in MembershipLevel1 with promotions because they are the least likely to purchase retail. I would also recommened to the marketing team that they target clients who are not members and clients who are in membership level 1 because these two groups are far less likely to purchase retail than those clients who are in membership level 2. The marketing team could also target clients who are newer to Beach Tan because the less amount of UVTans and SunlessTans a client has done, the less likely they are to purchase retail. Lastly, I would suggest the marketing team target Males with promotions for retail since males are far less likely than females to purchase retail. Retail tends to be more tailored towards women since women are more likely to tan. If the marketing team could find a way to make more males consider purchasing retail, I believe this would contribute positively to retail revenue. 
+This regression model displays which types of clients are least likely to purchcase retail, so the marketing team can target these clients in hopes of getting them to purchase more retail. I would recommened that the marketing target clients who are in lower membership levels with promotions because they are the least likely to purchase retail. I would also recommened to the marketing team that they target clients who are not members (Membership Type 0) and clients who are monthly members (Membership Type 1) because these two groups are far less likely to purchase retail than those clients who are annual members (Membership Type 3). The marketing team could also target clients who are newer to Beach Tan because the less amount of UVTans and SunlessTans a client has done, the less likely they are to purchase retail. Lastly, I would suggest the marketing team target Males with promotions for retail since males are far less likely than females to purchase retail. Retail tends to be more tailored towards women since women are more likely to tan. If the marketing team could find a way to make more males consider purchasing retail, I believe this would contribute positively to retail revenue. 
 
 Overall, this regression model has allowed the marketing team to gain a better understanding of different client's tanning habits and what type of clients are purchasing retail. This information will aid the marketing team in creating more customized promotions. These targeted promotions should lead to an increase in retail revenue. 
 
 Additionally, this model can be used again in the future when new data is acquired. Based on what type of clients the marketing team promotes to, this model can be used to see if certain types of client's have had an increase in retail revenue, which will be a nice way to see if their ads are working the way the want them to. 
 
-setwd("/Users/sydneyharris/Desktop/ISA 616/616 Project.Repo")
 
 
 

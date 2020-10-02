@@ -1,0 +1,13 @@
+barplot(aggregate(BeachTan$RetailRevenue, by = list(BeachTan$Gender), 
+                  mean, rm.na = T)[,2], xlab = "Gender", ylab = "Average Retail Revenue",
+                  names.arg = c("Female", "Male"))
+
+
+barplot(aggregate(BeachTan$RetailRevenue, by = list(BeachTan$MembershipType), 
+                  mean, rm.na = T)[,2], xlab = "Membership Type", ylab = "Average Retail Revenue",
+        names.arg = c("Non Member", "Monthly Membership", "Annual Membership"))
+
+
+
+testreg <- lm(RetailRevenue ~ MembershipLevel, data = BeachTan)
+summary(testreg)
