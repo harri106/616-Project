@@ -2863,6 +2863,8 @@ div.tocify {
 </div>
 
 
+<div id="software-environment" class="section level3">
+<h3><span class="header-section-number">0.0.1</span> Software Environment</h3>
 <pre><code>## R version 3.6.2 (2019-12-12)
 ## Platform: x86_64-apple-darwin15.6.0 (64-bit)
 ## Running under: macOS Catalina 10.15.7
@@ -2897,8 +2899,9 @@ div.tocify {
 ## [45] xml2_1.3.2        data.table_1.12.8 reprex_0.3.0      lubridate_1.7.9  
 ## [49] assertthat_0.2.1  rmarkdown_2.3     httr_1.4.2        rstudioapi_0.11  
 ## [53] R6_2.4.1          igraph_1.2.5      nlme_3.1-142      compiler_3.6.2</code></pre>
+</div>
 <div id="packages-used" class="section level3">
-<h3><span class="header-section-number">0.0.1</span> Packages Used</h3>
+<h3><span class="header-section-number">0.0.2</span> Packages Used</h3>
 <p>I used the DataExplorer package to plot the amount of missingness in each variable. I used the tidyverse, backports, and dplyr packages to recode variable levels. I used checkpoint so this version of R can be accessed with the correct packages when this analysis is reproduced in the futurre.</p>
 <pre class="r"><code>if(require(checkpoint)==FALSE)
   install.packages(&quot;checkpoint&quot;)
@@ -2910,7 +2913,7 @@ p_load(DataExplorer, dplyr, tidyverse, backports)</code></pre>
 <div id="overview-of-the-purpose-of-analysis" class="section level1">
 <h1><span class="header-section-number">1</span> Overview of the Purpose of Analysis</h1>
 <p>Beach Tan is a popular indoor tanning salon that has several locations across the US. While Beach Tan is a very popular indoor tanning destination, Beach Tan struggles with getting their clients to purchase retail. A lot of clients purchase their retail online rather than in store. Due to this, Beach Tan’s marketing team was tasked with creating more targted promotions for retail to increase retail revenue at Beach Tan locations. Currrently, the marketing team’s promotions are broad and the same for every client. The marketing team wants to know what type of clients are purchasing retail and what type of clients are not so they can better target certain clients with retail ads.</p>
-<p>In this analysis, I attempt to gain a deeper insight into the tanning habits of Beach Tan customers by examining how a client’s age, gender, membership type, membership level, amount of sunless tans, and amount of UV tans affect Beach Tan’s retail revenue. To do so, I created a multiple linear regression model on the Beach Tan data that was pulled from BeachTan dataset. It is important to note that this data was preprocessed by Dr.Jones-Farmer. The csv for the BeachTan data and the excel file with the data dictionary are included in the project folder.</p>
+<p>In this analysis, I attempt to gain a deeper insight into the tanning habits of Beach Tan customers by examining how a client’s age, gender, membership type, membership level, amount of sunless tans, and amount of UV tans affect Beach Tan’s retail revenue. To do so, I created a multiple linear regression model on the Beach Tan data that was pulled from BeachTan dataset. It is important to note that this data was preprocessed by Dr.Jones-Farmer. The csv for the BeachTan data and the excel file with the data dictionary are included in the github 616-Project.</p>
 </div>
 <div id="description-of-beach-tan-data" class="section level1">
 <h1><span class="header-section-number">2</span> Description of Beach Tan Data</h1>

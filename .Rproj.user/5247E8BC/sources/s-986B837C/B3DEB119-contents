@@ -24,6 +24,8 @@ knitr::opts_chunk$set(echo = TRUE,
                       clean_cache=TRUE)
 ```
 
+### Software Environment 
+
 ```{r, echo=FALSE}
 sessionInfo()
 ```
@@ -49,7 +51,7 @@ p_load(DataExplorer, dplyr, tidyverse, backports)
 
   Beach Tan is a popular indoor tanning salon that has several locations across the US. While Beach Tan is a very popular indoor tanning destination, Beach Tan struggles with getting their clients to purchase retail. A lot of clients purchase their retail online rather than in store. Due to this, Beach Tan's marketing team was tasked with creating more targted promotions for retail to increase retail revenue at Beach Tan locations. Currrently, the marketing team's promotions are broad and the same for every client. The marketing team wants to know what type of clients are purchasing retail and what type of clients are not so they can better target certain clients with retail ads.
   
-  In this analysis, I attempt to gain a deeper insight into the tanning habits of Beach Tan customers by examining how a client's age, gender, membership type, membership level, amount of sunless tans, and amount of UV tans affect Beach Tan's retail revenue. To do so, I created a multiple linear regression model on the Beach Tan data that was pulled from BeachTan dataset. It is important to note that this data was preprocessed by Dr.Jones-Farmer. The csv for the BeachTan data and the excel file with the data dictionary are included in the project folder. 
+  In this analysis, I attempt to gain a deeper insight into the tanning habits of Beach Tan customers by examining how a client's age, gender, membership type, membership level, amount of sunless tans, and amount of UV tans affect Beach Tan's retail revenue. To do so, I created a multiple linear regression model on the Beach Tan data that was pulled from BeachTan dataset. It is important to note that this data was preprocessed by Dr.Jones-Farmer. The csv for the BeachTan data and the excel file with the data dictionary are included in the github 616-Project. 
 
 # Description of Beach Tan Data
 
