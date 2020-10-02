@@ -35,7 +35,7 @@ sessionInfo()
 
 I used the DataExplorer package to plot the amount of missingness in each variable.
 I used the tidyverse, backports, and dplyr packages to recode variable levels. 
-I used checkpoint so this version of R can be accessed with the correct packages when this analysis is reproduced in the futurre.
+I used checkpoint so this version of R can be accessed with the correct packages when this analysis is reproduced in the future.
 
 ```{r}
 if(require(checkpoint)==FALSE)
