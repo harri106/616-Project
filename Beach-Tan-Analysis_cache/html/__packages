@@ -10,3 +10,5 @@ purrr
 stringr
 forcats
 backports
+checkpoint
+pacman
