@@ -1,3 +1,0 @@
-"0","if(require(pacman)==FALSE)"
-"0","  install.packages(""pacman"")"
-"0","p_load(DataExplorer, dplyr, tidyverse, backports, forcats)"

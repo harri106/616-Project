@@ -1,0 +1,2 @@
+"0","BeachTan_original<-read.csv(""BeachTan_original.csv"", stringsAsFactors = TRUE)"
+"0","head(BeachTan_original)"
