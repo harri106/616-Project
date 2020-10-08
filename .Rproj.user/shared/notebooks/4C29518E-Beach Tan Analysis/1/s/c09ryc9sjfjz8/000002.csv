@@ -1,13 +1,13 @@
 "0","options(scipen=999)"
 "0","set.seed(13)"
-"0","RetailRegression <- lm(RetailRevenue ~  Gender + MembershipType + MembershipLevel + UVTans + SunlessTans, data = BeachTan)"
+"0","RetailRegression <- lm(RetailRevenue ~  Gender + MembershipType + MembershipLevel + UVTans + SunlessTans, data = BeachTan_clean)"
 "0","summary(RetailRegression)"
 "1","
 Call:
 "
 "1",""
 "1","lm(formula = RetailRevenue ~ Gender + MembershipType + MembershipLevel + 
-    UVTans + SunlessTans, data = BeachTan)"
+    UVTans + SunlessTans, data = BeachTan_clean)"
 "1",""
 "1","
 

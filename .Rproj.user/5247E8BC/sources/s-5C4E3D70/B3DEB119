@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1600783951412.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2142207896",
+    "id" : "B3DEB119",
+    "lastKnownWriteTime" : 1602168567,
+    "last_content_update" : 1602168567327,
+    "path" : "~/Desktop/ISA 616/616 Project/Beach Tan Analysis.Rmd",
+    "project_path" : "Beach Tan Analysis.Rmd",
+    "properties" : {
+        "cursorPosition" : "91,20",
+        "docOutlineVisible" : "0",
+        "last_setup_crc32" : "5C4E3D70ff0f6c2e",
+        "scrollLine" : "87",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

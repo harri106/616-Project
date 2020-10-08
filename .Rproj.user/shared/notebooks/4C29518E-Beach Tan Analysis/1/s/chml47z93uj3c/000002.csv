@@ -1,1 +1,1 @@
-"0","BeachTan$MembershipLevel<-as.factor(BeachTan$MembershipLevel)"
+"0","BeachTan_clean$MembershipLevel<-as.factor(BeachTan_clean$MembershipLevel)"

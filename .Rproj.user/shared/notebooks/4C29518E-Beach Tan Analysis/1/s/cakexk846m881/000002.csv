@@ -1,6 +1,0 @@
-"0","if(require(checkpoint)==FALSE)"
-"0","  install.packages(""checkpoint"")"
-"0","checkpoint(snapshotDate = ""2020-10-01"")"
-"0","if(require(pacman)==FALSE)"
-"0","  install.packages(""pacman"")"
-"0","p_load(DataExplorer, dplyr, tidyverse, backports)"
