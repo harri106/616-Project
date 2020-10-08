@@ -32,6 +32,8 @@ knitr::opts_chunk$set(echo = TRUE,
   
 ## Software Environment 
 
+First I recorded my software environment so when someone is reproducing this analysis they can see the software environment I used to produce this analysis.
+
 ```{r, echo=FALSE}
 sessionInfo()
 ```
@@ -43,9 +45,20 @@ I used the DataExplorer package to plot the amount of missingness in each variab
 I used the tidyverse, backports, dplyr, and forcats packages to recode variable levels. 
 I used pacman so this version of R can be accessed with the correct packages when this analysis is reproduced in the future.
 
+First, I cleared my global environment to start this analysis fresh without any other data that I have previously used.
+
+```{r}
+rm(list = ls())
+```
+
+If pacman isn't already installed, I used the following code to ask the user to install pacman. 
 ```{r}
 if(require(pacman)==FALSE)
   install.packages("pacman")
+```
+
+I then used the p_load function to install the required packages for this analysis. 
+```{r}
 p_load(DataExplorer, dplyr, tidyverse, backports, forcats)
 ```
 
