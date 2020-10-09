@@ -1,0 +1,2 @@
+"0","BeachTan_original$DateJoined<- as.character(BeachTan_original$DateJoined)"
+"0","BeachTan_original$DateJoined <- as.Date(BeachTan_original$DateJoined, ""%m/%d/%Y"")"

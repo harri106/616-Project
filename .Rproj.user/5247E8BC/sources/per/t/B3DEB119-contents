@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 First I recorded my software environment so when someone is reproducing this analysis they can see the software environment I used to produce this analysis.
 
-```{r, echo=FALSE}
+```{r}
 sessionInfo()
 ```
 
@@ -92,21 +92,6 @@ tail(BeachTan_original)
 ```
 
 
-## Checking for Missing Variables 
-
-I used the following code to check for missing variables. For any missing variables, I will examine them further to see if I need to delete them, recode them, etc. so they do not throw up the regression I will create later on in this analysis.
-```{r}
-plot_missing(BeachTan_original)
-```
-
-A very small percentage of DateJoined was missing so I used na.omit to drop these rows with missing data since it is such a small percentage of the overall rows. I created a new dataset called BeachTan_clean so I do not lose the original data set.
-
-```{r}
-BeachTan_clean <- na.omit(BeachTan_original)
-```
-
-The variable gender does include some NULL values. I assume that clients either forgot to fill in this question, refused to disclose what gender they identify as, or do not identify as a female or male. 
-
 # Details On Data Preprocessing 
 
 ## Converting Variables to the Correct Data Types
@@ -115,59 +100,78 @@ Before I analyze the variables that had missing values, I need to convert the fo
 
 Several variables have incorrect datatypes which need to be fixed. I looked at the data types to better examine which variables have incorrect datatypes.
 ```{r}
-str(BeachTan_clean)
+str(BeachTan_original)
 ```
 
 Currently, MembershipType is an integer but it needs to be changed to a factor because it has categorical levels.
 ```{r}
-BeachTan_clean$MembershipType<-as.factor(BeachTan_clean$MembershipType)
+BeachTan_original$MembershipType<-as.factor(BeachTan_original$MembershipType)
 ```
 
 MembershipLevel is currently an integer but needs to be changed to a factor because it has categorical levels.
 
 ```{r}
-BeachTan_clean$MembershipLevel<-as.factor(BeachTan_clean$MembershipLevel)
+BeachTan_original$MembershipLevel<-as.factor(BeachTan_original$MembershipLevel)
 ```
 
 DateJoined is currently a factor but should be a date. 
 ```{r}
-BeachTan_clean$DateJoined<- as.character(BeachTan_clean$DateJoined)
-BeachTan_clean$DateJoined <- as.Date(BeachTan_clean$DateJoined, "%m/%d/%Y")
+BeachTan_original$DateJoined<- as.character(BeachTan_original$DateJoined)
+BeachTan_original$DateJoined <- as.Date(BeachTan_original$DateJoined, "%m/%d/%Y")
 ```
 
 UIDStoreLocation is currently a integer but needs to be recoded as a factor.
 ```{r}
-BeachTan_clean$UIDStoreLocation<- as.factor(BeachTan_clean$UIDStoreLocation)
+BeachTan_original$UIDStoreLocation<- as.factor(BeachTan_original$UIDStoreLocation)
 ```
 
 ## Creating the correct amount of levels for variables that are factors
 
-Gender currently has 4 levels which are "", #NULL!, 0, and 1. I combined "" and #NULL! to one level called missing. I ran a multiple linear regression with gender including a level of missing and the missing level made the gender an insignificant predictor so I decided to drop the missing values as there were only 20 of them. 
+Gender currently has 4 levels which are "", #NULL!, 0, and 1, which can be seen below.
+```{r}
+table(BeachTan_original$Gender)
+```
+
+
+I combined "" and #NULL! to one level called missing.
+```{r}
+BeachTan_original$Gender=fct_recode(BeachTan_original$Gender,missing="",missing="#NULL!")
+table(BeachTan_original$Gender)
+```
+
+I ran a multiple linear regression with gender including the level "missing" and the missing level made the gender an insignificant predictor so I decided to drop the missing values as there were only 20 of them. 
 
 ```{r}
-BeachTan_clean$Gender=fct_recode(BeachTan_clean$Gender,missing="",missing="#NULL!")
-BeachTan_clean=BeachTan_clean[-which(BeachTan_clean$Gender=="missing"),]
-BeachTan_clean$Gender=fct_drop(BeachTan_clean$Gender,only="missing")
-table(BeachTan_clean$Gender)
+BeachTan_original=BeachTan_original[-which(BeachTan_original$Gender=="missing"),]
+BeachTan_original$Gender=fct_drop(BeachTan_original$Gender,only="missing")
+table(BeachTan_original$Gender)
 ```
+
+## Checking for Missing Variables 
+
+I used the following code to check for missing variables. For any missing variables, I will examine them further to see if I need to delete them, recode them, etc. so they do not throw up the regression I will create later on in this analysis.
+
+```{r}
+plot_missing(BeachTan_original)
+```
+
+A very small percentage of DateJoined was missing. I will use na.omit to drop these rows with missing data since it is such a small percentage of the overall rows. I will do this after I check the distribution of the variables.
 
 
 ## Checking the Distribution of Variables 
 
 I graphed the quantitative and qualitative variables to look for any unusual observations or extreme outliers because if any of these are present they will throw off the regression. There seems to be no extreme outliers or unusual observations except for in the DaysSinceJoined histogram. I will further analyze DaysSinceJoined to see why there are some extreme outliers. 
-
 ```{r}
-plot_histogram(BeachTan_clean)
+plot_histogram(BeachTan_original)
 ```
-
 ```{r}
-plot_bar(BeachTan_clean)
+plot_bar(BeachTan_original)
 ```
 
 The variable DaysSinceJoined had some with values over 40,000, which means they joined over 100 years ago. This is because since DateJoined had some missing observations, DaysSinceJoined was way larger than it should have been for those observations. I simply removed those observations where DaysSinceJoined was greater than 40,000 because this does not make sense in terms of the problem.
 
 ```{r}
-BeachTan_clean <- BeachTan_clean %>% filter(DaysSinceJoined<40000)
+BeachTan_clean <- BeachTan_original %>% filter(DaysSinceJoined<40000)
 ```
 
 I plotted DaysSinceJoined again to see if this fixed the issue.
@@ -177,6 +181,12 @@ plot_histogram(BeachTan_clean$DaysSinceJoined)
 
 As you can see, there are no more extreme outliers, so this variable is now cleaned.
 
+
+I now drop the small percentage of rows that were missing from DaysJoined.
+
+```{r}
+BeachTan_clean <- na.omit(BeachTan_original)
+```
 
 I now plotted the missing data again to make sure there is now no missing data.
 

@@ -1,4 +1,5 @@
 base
+pacman
 DataExplorer
 dplyr
 tidyverse
@@ -10,5 +11,3 @@ purrr
 stringr
 forcats
 backports
-checkpoint
-pacman

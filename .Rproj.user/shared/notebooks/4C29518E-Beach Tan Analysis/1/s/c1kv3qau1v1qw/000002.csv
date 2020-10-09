@@ -1,0 +1,3 @@
+"0","barplot(aggregate(BeachTan_clean$RetailRevenue, by = list(BeachTan_clean$Gender), "
+"0","                  mean, rm.na = T)[,2], xlab = ""Gender"", ylab = ""Average Retail Revenue"","
+"0","                  names.arg = c(""Female"", ""Male""))"
